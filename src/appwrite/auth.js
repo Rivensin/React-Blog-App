@@ -1,5 +1,5 @@
 import conf from "../conf/conf.js";
-import { Client, Account } from "appwrite";
+import { Client, Account, ID } from "appwrite";
 
 export class AuthService{
   client = new Client()
@@ -14,12 +14,11 @@ export class AuthService{
 
   async createAccount({email,password,name}){
     try {
-      const userAccount = this.account.create(ID.unique(),email,password,name)
+      const userAccount = await this.account.create(ID.unique(),email,password,name)
       if(userAccount){
-        this.login({email,password})
-      } else {
-        return userAccount
-      }   
+        return this.login({email,password})
+      } 
+      return userAccount        
     } catch (error) {
       throw error
     }
@@ -37,7 +36,7 @@ export class AuthService{
     try {
       return await this.account.get()
     } catch (error) {
-      console.log('Appwrite service :: getCurrentUser() ::"', error)
+      console.log(`Failed to get current user : error`,error)
     }
 
     return null
@@ -45,7 +44,7 @@ export class AuthService{
 
   async logout(){
     try {
-      await this.account.deleteSession()
+      await this.account.deleteSessions()
     } catch (error) {
       console.log('Appwrite service :: logout() ::"', error)
     }
