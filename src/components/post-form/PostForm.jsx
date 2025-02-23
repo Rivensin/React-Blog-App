@@ -50,7 +50,7 @@ export default function PostForm({post}) {
   React.useEffect(() => {
     if (post) {
       setValue('title', post.title || '');
-      setValue('slug',slugTransform(post.title),{shouldValidate : true} || '')
+      setValue('slug',slugTransform(post.title || ''),{shouldValidate : true} )
       setValue('content', post.content || '');
       setValue('status', post.status || 'active');
     }
