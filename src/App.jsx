@@ -7,7 +7,6 @@ import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import { Outlet } from 'react-router-dom'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -26,13 +25,13 @@ function App() {
   },[dispatch])
 
   return !loading ? (
-    <div className='min-h-screen h-full flex flex-col bg-gray-400'>
+    <div className='h-full flex flex-col'>
       <div className='w-full'>
         <Header />
-        <main className='flex-grow'>
+      </div>
+        <main className='flex-grow bg-[#8d99ae]'>
           <Outlet />  
         </main>
-      </div>
       <div className='w-full'>
         <Footer />  
       </div>            
