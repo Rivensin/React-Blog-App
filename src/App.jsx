@@ -29,7 +29,7 @@ function App() {
       <div className='w-full'>
         <Header />
       </div>
-        <main className='flex-grow bg-[#8d99ae]'>
+        <main className='flex-grow bg-white'>
           <Outlet />  
         </main>
       <div className='w-full'>

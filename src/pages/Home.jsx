@@ -2,20 +2,24 @@ import React, { useEffect, useState } from 'react'
 import service from '../appwrite/config'
 import Container from '../components/container/Container'
 import PostCard from '../components/PostCard'
+import { useSelector } from 'react-redux'
 
 function Home() {
   const [posts,setPosts] = useState([])
   const [loading,setLoading] = useState(true)
-
+  const userData = useSelector(state => state.auth.status)
+  
   useEffect(() => {
     service.getPosts([]).then(posts => {
       if(posts){
         setPosts(posts.documents)
       }
-    }).finally(() => setLoading(false))
-  },[])
+    }).finally(() => setLoading(false)
+    )
+  },[userData])
 
-  if(posts.length === 0){
+  
+  if(userData === false){
     return !loading ? (
       <div className='w-full py-8'>
         <Container>
@@ -43,7 +47,5 @@ function Home() {
   ) : null
   
 }
-
-  
 
 export default Home
