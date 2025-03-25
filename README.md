@@ -5,15 +5,21 @@ A full-stack blog application built with React.js, Redux, and Appwrite for backe
 🚀 Features
 
 ✅ User Authentication (Login/Register with Appwrite) 🔑
+
 ✅ Create, Edit & Delete Blog Posts ✍️
+
 ✅ Upload & Display Images 🖼️
+
 ✅ Responsive UI with Tailwind CSS 📱💻
+
 ✅ Fast & Scalable with Vite ⚡
 
 🛠️ Tech Stack
 
 Frontend: Tailwind CSS, Javascript, React.js, Redux, React Router DOM, TinyMCE, React-Parser
+
 Backend: Appwrite (Authentication, Database, Storage)
+
 Deployment: Vite
 
 📜 License
