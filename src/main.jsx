@@ -58,9 +58,12 @@ const router = createBrowserRouter([
            <Post />
         </Protected>
        }
-    ]
+    ],
+    
   }
-])
+  ],
+  { basename: "/React-Blog-App" }
+)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
