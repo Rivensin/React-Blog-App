@@ -51,14 +51,14 @@ function Post() {
               <Link to={`/edit-post/${post.$id}`}>
                 <Button bgColor='bg-green-500'
                         className='hover:shadow-lg hover:shadow-gray-500 hover:opacity-80 h-15 mr-5'>
-                  <img src="images/edit.svg" alt="edit" />
+                  <img src='React-Blog-App/images/edit.svg' alt="edit" />
                   Edit
                 </Button>
               </Link>
               <Button bgColor='bg-red-500' 
                       onClick={deletePost}
                       className='hover:shadow-lg hover:shadow-gray-500 hover:opacity-80 h-15'>
-                <img src="images/delete.svg" alt="delete" />
+                <img src="React-Blog-App/images/delete.svg" alt="delete" />
                 Delete
               </Button>
             </div>
