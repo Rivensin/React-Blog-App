@@ -50,14 +50,14 @@ function Post() {
               <Link to={`/edit-post/${post.$id}`}>
                 <Button bgColor='bg-green-500'
                         className='mb-4 shadow-lg shadow-gray-500'>
-                  <img src="/edit.svg" alt="edit" />
+                  <img src="./images/logo.png" alt="edit" />
                   Edit
                 </Button>
               </Link>
               <Button bgColor='bg-red-500' 
                       onClick={deletePost}
                       className='mb-2 shadow-lg shadow-gray-500'>
-                <img src="/delete.svg" alt="edit" />
+                <img src="./images/delete.svg" alt="delete" />
                 Delete
               </Button>
             </div>

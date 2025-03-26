@@ -80,7 +80,7 @@ function SignUp() {
               {...register("password", {
                   required: true,})}
             />
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full hover:opacity-80 transition duration-200">
               Create Account
             </Button>
           </div>
