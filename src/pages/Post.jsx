@@ -39,25 +39,26 @@ function Post() {
   return post ? (
     <div className='py-8'>
       <Container>
-        <div className='w-full flex justify-center mb-4 border rounded-xl p-2 shadow-lg shadow-gray-500'>
+        <div className='w-full mb-4 border rounded-xl p-2 shadow-lg shadow-gray-500'>
           <div className='rounded-xl overflow-hidden'>
           <img src={service.getFilePreview(post.featuredImage)} 
                alt={post.title} 
+               className='w-full'
           />
           </div>
           {isAuthor && (
-            <div className="ml-2">
+            <div className="my-2 flex">
               <Link to={`/edit-post/${post.$id}`}>
                 <Button bgColor='bg-green-500'
-                        className='mb-4 shadow-lg shadow-gray-500'>
-                  <img src="./images/logo.png" alt="edit" />
+                        className='hover:shadow-lg hover:shadow-gray-500 hover:opacity-80 h-15 mr-5'>
+                  <img src="/images/edit.svg" alt="edit" />
                   Edit
                 </Button>
               </Link>
               <Button bgColor='bg-red-500' 
                       onClick={deletePost}
-                      className='mb-2 shadow-lg shadow-gray-500'>
-                <img src="./images/delete.svg" alt="delete" />
+                      className='hover:shadow-lg hover:shadow-gray-500 hover:opacity-80 h-15'>
+                <img src="/images/delete.svg" alt="delete" />
                 Delete
               </Button>
             </div>
