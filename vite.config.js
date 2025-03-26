@@ -6,5 +6,6 @@ export default defineConfig({
   plugins: [react()],
   css: {
     postcss: './postcss.config.js', // Ensure this path matches your project setup
+    base: '/React-Blog-App/',
   },
 })
