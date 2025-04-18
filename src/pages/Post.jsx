@@ -28,6 +28,8 @@ function Post() {
     if(slug){
       service.getPost(slug).then(post => { 
         if(post){
+          const parsedFeaturedImage = JSON.parse(post.featuredImage)
+          post.featuredImage = parsedFeaturedImage.url
           setPost(post)
         } else {
           navigate('/')
@@ -41,9 +43,9 @@ function Post() {
       <Container>
         <div className='w-full mb-4 border rounded-xl p-2 shadow-lg shadow-gray-500'>
           <div className='rounded-xl overflow-hidden'>
-          <img src={service.getFilePreview(post.featuredImage)} 
+          <img src={post.featuredImage} 
                alt={post.title} 
-               className='w-full'
+               className='w-full h-[640px]'
           />
           </div>
           {isAuthor && (

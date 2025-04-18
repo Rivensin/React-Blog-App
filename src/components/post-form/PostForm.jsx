@@ -10,30 +10,33 @@ import { useNavigate } from 'react-router-dom'
 import authService from '../../appwrite/auth'
 
 export default function PostForm({post}) {
-  const {register, handleSubmit, watch, control, setValue, getValues} = useForm()
+  const {register, handleSubmit, watch, control, setValue} = useForm()
   
   const navigate = useNavigate()
   const userData = useSelector(state => state.auth.userData)
-
+  
   const submit = async(data) => {
     if(post){
-      const file = data.image[0] ? await service.uploadFile(data.image[0]) : null
+      const imageUrl = data.image[0] ? await service.uploadImageToCloudinary(data.image[0]) : null
       //memasukkan 'image' yang telah di register dalam component Input ke appwrite
-      if(file){
-        service.deleteFile(post.featuredImage) //delete 'image' yang sudah ada di appwrite
+      
+      if(imageUrl){
+        const publicId = service.getPublicIdFromUrl(post.featuredImage)
+        if(publicId){
+            await service.deleteImageFromCloudinary(publicId) //delete 'image' yang sudah ada di cloudinary
+        }
       }
-
-      const dbPost = await service.updatePost(post.$id, {...data, featuredImage : file ? file.$id : undefined}) //menambahkan featuredimage dengan mengambil variable file.$id 
+      
+      const dbPost = await service.updatePost(post.$id, {...data, featuredImage : imageUrl ? JSON.stringify(imageUrl) : post.featuredImage}) //menambahkan featuredimage dengan mengambil variable file.$id 
 
       if(dbPost){
         navigate(`/post/${dbPost.$id}`)
       }
     } else {
-      const file = await service.uploadFile(data.image[0]) //memasukkan 'image' yang telah di register dalam component Input ke appwrite
+      const imageUrl = await service.uploadImageToCloudinary(data.image[0]) //memasukkan 'image' yang telah di register dalam component Input ke appwrite
 
-      if(file){
-        data.featuredImage = file.$id //mengisi variable featuredimage
-        const dbPost = await service.createPost({...data,userId: userData.$id}) 
+      if(imageUrl){
+        const dbPost = await service.createPost({...data,featuredImage: JSON.stringify(imageUrl),userId: userData.$id}) 
         
         if(dbPost){
           navigate(`/post/${dbPost.$id}`)
@@ -95,7 +98,7 @@ export default function PostForm({post}) {
         />
         {post && (
           <div className='w-full mb-4'>
-            <img src={service.getFilePreview(post.featuredImage)} alt={post.title}
+            <img src={post.featuredImage.secure_url || post.featuredImage} alt={post.title}
                  className='rounded-lg' 
             />
           </div>
@@ -109,7 +112,7 @@ export default function PostForm({post}) {
                 bgColor={post ? 'bg-green-500' : undefined}
                 className='w-full hover:opacity-80 transition duration-200'
         >
-          {post ? 'update' : 'submit'}
+          {post ? 'Update' : 'Submit'}
         </Button>
       </div>
     </form>

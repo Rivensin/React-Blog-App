@@ -35,11 +35,16 @@ function Home() {
     <div className='w-full py-8'>
       <Container>
         <div className='flex flex-wrap'>
-          {posts.map(post => (
-            <div className='p-2 w-1/4' key={post.$id}>
-              <PostCard {...post}/>  
-            </div>
-          )
+          {posts.map(post => {
+            const parsedFeaturedImage = JSON.parse(post.featuredImage)
+            const imageUrl = parsedFeaturedImage.url
+            
+            return (
+              <div className='p-2 w-1/4' key={post.$id}>
+                <PostCard {...post} featuredImage={imageUrl}/>  
+              </div>
+            )
+          }
           )}
         </div>
       </Container>
