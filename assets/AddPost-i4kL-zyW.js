@@ -1,0 +1,1 @@
+import{j as r,C as o}from"./index-x4Ma9uTE.js";import{P as s}from"./PostForm-B7oQhwzL.js";import"./index.esm-BvGZI0Og.js";import"./Button-CBV9p-Sf.js";function e(){return r.jsx("div",{className:"py-6",children:r.jsx(o,{children:r.jsx(s,{})})})}export{e as default};
