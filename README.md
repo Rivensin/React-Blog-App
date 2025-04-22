@@ -16,9 +16,9 @@ A full-stack blog application built with React.js, Redux, and Appwrite for backe
 
 🛠️ Tech Stack
 
-Frontend: Tailwind CSS, Javascript, React.js, Redux, React Router DOM, TinyMCE, React-Parser
+Frontend: Tailwind CSS, Javascript, React.js, Redux, React Router DOM, TinyMCE, React-Parser, LazyLoading
 
-Backend: Appwrite (Authentication, Database, Storage)
+Backend: Appwrite (Authentication, Database), Cloudinary (Storage)
 
 Deployment: Vite
 
