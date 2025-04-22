@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import Spinner from './Spinner'
 
 export default function Protected({children,authentication = true}) {
 
@@ -9,6 +10,8 @@ export default function Protected({children,authentication = true}) {
   const [loader,setLoader] = useState(true)
 
   useEffect(() => {
+    if (authStatus === undefined) return
+
     if(authentication && !authStatus){
       navigate('/login')
     } else if(!authentication && authStatus){
@@ -18,8 +21,5 @@ export default function Protected({children,authentication = true}) {
   }
   ,[authStatus,authentication,navigate])
 
-  return loader ? null : <> {children} </>
+  return loader ? <Spinner /> : <> {children} </>
 }
-
-
-

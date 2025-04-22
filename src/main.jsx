@@ -13,6 +13,24 @@ import AllPost from './pages/AllPost.jsx'
 import AddPost from './pages/AddPost.jsx'
 import EditPost from './pages/EditPost.jsx'
 import Post from './pages/Post.jsx'
+import { lazy,Suspense } from 'react'
+
+const home = lazy(() => import('./pages/Home.jsx'));
+const login = lazy(() => import('./pages/Login.jsx'));
+const signUp = lazy(() => import('./pages/SignUp.jsx'));
+const allPost = lazy(() => import('./pages/AllPost.jsx'));
+const addPost = lazy(() => import('./pages/AddPost.jsx'));
+const editPost = lazy(() => import('./pages/EditPost.jsx'));
+const post = lazy(() => import('./pages/Post.jsx'));
+
+
+const loadable = Component => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Component />
+    </Suspense>
+  )
+}
 
 const router = createBrowserRouter([
   {
@@ -20,49 +38,49 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {path: "/", 
-        element: <Home />
+        element: loadable(home)
       },
       {path: "/login", 
        element: 
        <Protected authentication={false}>
-          <Login />
+        {loadable(login)}
        </Protected>
       },
       {path: "/signup", 
         element: 
         <Protected authentication={false}>
-           <SignUp />
+          {loadable(signUp)}
         </Protected>
        },
        {path: "/all-posts", 
         element: 
         <Protected authentication>
-           <AllPost />
+           {loadable(allPost)}
         </Protected>
        },
        {path: "/add-post", 
         element: 
         <Protected authentication>
-           <AddPost />
+           {loadable(addPost)}
         </Protected>
        },
        {path: "/edit-post/:slug",
         element: 
         <Protected authentication>
-           <EditPost />
+           {loadable(editPost)}
         </Protected>
        },
        {path: "/post/:slug", 
         element: 
         <Protected authentication>
-           <Post />
+           {loadable(post)}
         </Protected>
        }
     ],
     
   }
   ],
-  { basename: "/React-Blog-App" }
+  { basename: "/React-Blog-App/" }
 )
 
 createRoot(document.getElementById('root')).render(

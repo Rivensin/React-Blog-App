@@ -6,7 +6,6 @@ import PostCard from '../components/PostCard'
 function AllPost() {
   const [posts,setPosts] = useState([])
   
-
   useEffect(() => {
     service.getPosts([]).then(posts => {
       if(posts){
@@ -21,7 +20,6 @@ function AllPost() {
       <Container>
         <div className='flex flex-wrap'>     
           {posts.map(post => {
-  
             const parsedFeaturedImage = JSON.parse(post.featuredImage)
             const imageUrl = parsedFeaturedImage.url
             
