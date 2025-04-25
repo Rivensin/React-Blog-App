@@ -1,1 +1,0 @@
-import{j as r}from"./index-x4Ma9uTE.js";function x({children:t,type:s="button",bgColor:e="bg-blue-600",textColor:o="text-white",className:n="",...u}){return r.jsx("button",{className:`px-4 py-2 rounded-lg w-20 ${e} ${o} ${n}`,...u,children:t})}export{x as B};
